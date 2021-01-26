@@ -4,7 +4,7 @@ const toggleBtn = document.querySelector('.toggle-btn')
 const closeBtn = document.querySelector('.close-btn')
 const sidebarWrapper = document.querySelector('.sidebar-wrapper')
 const sidebar  = document.querySelector('.sidebar-links')
-const linkBtn = [...document.querySelectorAll('.link-btn')]
+const linkBtns = [...document.querySelectorAll('.link-btn')]
 const submenu  = document.querySelector('.submenu')
 const hero  = document.querySelector('.hero')
 const nav  = document.querySelector('.nav')
@@ -30,4 +30,17 @@ sidebar.innerHTML = sublinks.map((item) => {
             }).join('')}
         </div>
     </article>`
+}).join('')
+
+linkBtns.forEach(btn => {
+    btn.addEventListener('mouseover', function(e) {
+        const text = e.currentTarget.textContent
+        const tempBtn = e.currentTarget.getBoundingClientRect()
+        const center = (tempBtn.left + tempBtn.right) / 2
+        const bottom = tempBtn.bottom - 3
+
+        submenu.classList.add('show')
+        submenu.style.left = `${center}px`
+        submenu.style.top = `${bottom}px`
+    })
 })
